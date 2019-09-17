@@ -1,5 +1,6 @@
 package example.myapplication23;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -100,5 +101,16 @@ public class MainActivity extends AppCompatActivity
         {
             return pages.length;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        //分发给子fragment处理
+        for(Fragment f: pages)
+        {
+            f.onActivityResult(requestCode, resultCode, data);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
